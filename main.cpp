@@ -1,31 +1,29 @@
 #include <iostream>
-#include <string.h>
-#include <math.h>
-using namespace std;
-int main()
-{
-	return 0;
-}
+#include <cstring>
 
-class String
-{
+using namespace std;
+class String {
 	char * value;
 	int len;
 public:
-	String():value(new char[1] {}), len(0) {};//конструктор по умолчанию
-	String(const String& s) {// конструктор копирования
-	delete[] value;
+	String():value(new char[1]{}), len(0) {};
+	String(const String& s) { 
 		len = s.len;
 		value = new char[len + 1];
 		for (int i = 0; i <= len; i++)
 			value[i] = s.value[i];
 	}
-	//перегрузка operator<<
 	friend ostream& operator<<(ostream& outputStream, const String & s) {
-		return outputStream << s.value;
+		return outputStream << s.value; 
 	}
-	//освобождене памяти
 	~String() {
 		delete[] value;
 	}
 };
+int main()
+{
+	String str;
+	String str2(str);
+	cout << str2 << endl;
+	return 0;
+}
